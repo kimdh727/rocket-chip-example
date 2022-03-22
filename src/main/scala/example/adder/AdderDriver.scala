@@ -9,7 +9,7 @@ import freechips.rocketchip.diplomacy._
 class AdderDriver(width: Int, numOutputs: Int)(implicit p: Parameters) extends LazyModule {
   val node = new AdderDriverNode(Seq.fill(numOutputs)(DownwardParam(width)))
 
-  lazy val module = new LazyModuleImp(this) {
+  class AdderDriverImp extends LazyModuleImp(this) {
     // check that node parameters converge after negotiation
     val negotiatedWidths = node.edges.out.map(_.width)
     require(negotiatedWidths.forall(_ == negotiatedWidths.head), "outputs must all have agreed on same width")
@@ -21,6 +21,8 @@ class AdderDriver(width: Int, numOutputs: Int)(implicit p: Parameters) extends L
     // drive signals
     node.out.foreach { case (addend, _) => addend := randomAddend }
   }
+
+  lazy val module = new AdderDriverImp
 
   override lazy val desiredName = "AdderDriver"
 }

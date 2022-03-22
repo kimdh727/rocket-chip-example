@@ -9,7 +9,7 @@ class AdderMonitor(width: Int, numOperands: Int)(implicit p: Parameters) extends
   val nodeSeq = Seq.fill(numOperands) { new AdderMonitorNode(UpwardParam(width)) }
   val nodeSum = new AdderMonitorNode(UpwardParam(width))
 
-  lazy val module = new LazyModuleImp(this) {
+  class AdderMonitorImp extends LazyModuleImp(this) {
     val io = IO(new Bundle {
       val error = Output(Bool())
     })
@@ -20,6 +20,8 @@ class AdderMonitor(width: Int, numOperands: Int)(implicit p: Parameters) extends
     // basic correctness checking
     io.error := nodeSum.in.head._1 =/= nodeSeq.map(_.in.head._1).reduce(_ + _)
   }
+
+  lazy val module = new AdderMonitorImp
 
   override lazy val desiredName = "AdderMonitor"
 }

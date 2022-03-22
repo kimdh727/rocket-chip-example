@@ -1,5 +1,6 @@
 package example.adder
 
+import chisel3._
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy._
 
@@ -18,11 +19,13 @@ class AdderTestHarness()(implicit p: Parameters) extends LazyModule {
   drivers.zip(monitor.nodeSeq).foreach { case (driver, monitorNode) => monitorNode := driver.node }
   monitor.nodeSum := adder.node
 
-  lazy val module = new LazyModuleImp(this) {
-    // when(monitor.module.io.error) {
-    //   printf("something went wrong")
-    // }
+  class AdderTestHarnessImp extends LazyModuleImp(this) {
+    when(monitor.module.io.error) {
+      printf("something went wrong")
+    }
   }
+
+  lazy val module = new AdderTestHarnessImp
 
   override lazy val desiredName = "AdderTestHarness"
 }

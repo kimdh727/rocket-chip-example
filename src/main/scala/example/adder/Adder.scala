@@ -15,10 +15,13 @@ class Adder(implicit p: Parameters) extends LazyModule {
       ups.head
     }
   )
-  lazy val module = new LazyModuleImp(this) {
+
+  class AdderImp extends LazyModuleImp(this) {
     require(node.in.size >= 2)
     node.out.head._1 := node.in.unzip._1.reduce(_ + _)
   }
+
+  lazy val module = new AdderImp
 
   override lazy val desiredName = "Adder"
 }
