@@ -3,6 +3,7 @@ package example.adder
 import chisel3._
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy._
+import freechips.rocketchip.util.ElaborationArtefacts
 
 /** top-level connector */
 class AdderTestHarness()(implicit p: Parameters) extends LazyModule {
@@ -18,6 +19,8 @@ class AdderTestHarness()(implicit p: Parameters) extends LazyModule {
 
   drivers.zip(monitor.nodeSeq).foreach { case (driver, monitorNode) => monitorNode := driver.node }
   monitor.nodeSum := adder.node
+
+  ElaborationArtefacts.add("graphml", graphML)
 
   class AdderTestHarnessImp extends LazyModuleImp(this) {
     when(monitor.module.io.error) {
