@@ -6,8 +6,9 @@ import freechips.rocketchip.diplomacy._
 
 /** monitor (sink) */
 class AdderMonitor(width: Int, numOperands: Int)(implicit p: Parameters) extends LazyModule {
-  val nodeSeq = Seq.fill(numOperands) { new AdderMonitorNode(UpwardParam(width)) }
-  val nodeSum = new AdderMonitorNode(UpwardParam(width))
+  val paramInfo = Seq.tabulate(numOperands)(n => s"Monitor $n")
+  val nodeSeq = Seq.tabulate(numOperands)(n => new AdderMonitorNode(UpwardParam(width, paramInfo(n))))
+  val nodeSum = new AdderMonitorNode(UpwardParam(width, "Monitor Sum"))
 
   class AdderMonitorImp extends LazyModuleImp(this) {
     val io = IO(new Bundle {

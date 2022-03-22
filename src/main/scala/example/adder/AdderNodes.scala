@@ -8,10 +8,11 @@ import freechips.rocketchip.diplomacy._
 // PARAMETER TYPES:                       D              U            E          B
 object AdderNodeImp extends SimpleNodeImp[DownwardParam, UpwardParam, EdgeParam, UInt] {
   def edge(pd: DownwardParam, pu: UpwardParam, p: Parameters, sourceInfo: SourceInfo) = {
-    if (pd.width < pu.width) EdgeParam(pd.width) else EdgeParam(pu.width)
+    val paramInfo = s"PD: ${pd.paramInfo} PU: ${pu.paramInfo}"
+    if (pd.width < pu.width) EdgeParam(pd.width, paramInfo) else EdgeParam(pu.width, paramInfo)
   }
   def bundle(e: EdgeParam) = UInt(e.width.W)
-  def render(e: EdgeParam) = RenderedEdge("blue", s"width = ${e.width}")
+  def render(e: EdgeParam) = RenderedEdge("blue", s"width = ${e.width}, info = ${e.paramInfo}")
 }
 
 /** node for [[AdderDriver]] (source) */

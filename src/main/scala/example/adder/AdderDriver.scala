@@ -7,8 +7,8 @@ import freechips.rocketchip.diplomacy._
 /** driver (source)
   * drives one random number on multiple outputs */
 class AdderDriver(width: Int, numOutputs: Int)(implicit p: Parameters) extends LazyModule {
-  val node = new AdderDriverNode(Seq.fill(numOutputs)(DownwardParam(width)))
-
+  val paramInfo = Seq.tabulate(numOutputs)(n => s"Driver $n")
+  val node = new AdderDriverNode(Seq.tabulate(numOutputs)(n => DownwardParam(width, paramInfo(n))))
   class AdderDriverImp extends LazyModuleImp(this) {
     // check that node parameters converge after negotiation
     val negotiatedWidths = node.edges.out.map(_.width)
