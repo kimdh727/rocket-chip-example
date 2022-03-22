@@ -23,8 +23,14 @@ class AdderTestHarness()(implicit p: Parameters) extends LazyModule {
   ElaborationArtefacts.add("graphml", graphML)
 
   class AdderTestHarnessImp extends LazyModuleImp(this) {
+    val io = IO(new Bundle {
+      val error = Output(Bool())
+    })
+
+    io.error := monitor.module.io.error
+
     when(monitor.module.io.error) {
-      printf("something went wrong")
+      printf("something went wrong\n")
     }
   }
 
