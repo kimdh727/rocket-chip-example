@@ -1,4 +1,4 @@
-package adder
+package example.adder
 
 import org.scalatest.flatspec.AnyFlatSpec
 import chiseltest._
@@ -6,7 +6,6 @@ import chiseltest._
 import chisel3._
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy.LazyModule
-import example.adder.AdderTestHarness
 
 class AdderSpec extends AnyFlatSpec with ChiselScalatestTester {
   val adder = LazyModule(new AdderTestHarness()(Parameters.empty))
