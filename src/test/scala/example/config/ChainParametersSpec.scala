@@ -3,7 +3,7 @@ package example.config
 import org.scalatest.flatspec.AnyFlatSpec
 import freechips.rocketchip.config._
 
-class ChainConfigSpec extends AnyFlatSpec {
+class ChainParametersSpec extends AnyFlatSpec {
   case object Key0 extends Field[Int]
   case object Key1 extends Field[Int]
   case object Key2 extends Field[Int]
