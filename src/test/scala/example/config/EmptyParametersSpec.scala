@@ -8,7 +8,7 @@ class EmptyParametersSpec extends AnyFlatSpec {
   case object Key1 extends Field[String]("Key1")
   case object Key2 extends Field[String]("Key2")
 
-  val config = EmptyConfig
+  val config = new EmptyConfig
 
   "Key0" should "have no default" in {
     assertThrows[IllegalArgumentException](config(Key0))

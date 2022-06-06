@@ -2,4 +2,4 @@ package example.config
 
 import freechips.rocketchip.config._
 
-object EmptyConfig extends Config(Parameters.empty)
+class EmptyConfig extends Config(Parameters.empty)
