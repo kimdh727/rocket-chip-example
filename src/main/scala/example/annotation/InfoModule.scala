@@ -16,7 +16,7 @@ class InfoModule extends Module {
 }
 
 object InfoAnnotationTester extends App {
-  val targetDir = "build"
+  val targetDir = "build/InfoModule"
 
   val logLevel = "warn"
 
