@@ -3,11 +3,6 @@ package util
 import java.io.File
 import firrtl.stage.FirrtlStage
 import freechips.rocketchip.system.RocketChipStage
-import firrtl.options.TargetDirAnnotation
-import freechips.rocketchip.stage._
-import firrtl.stage._
-import firrtl._
-import logger._
 
 object GeneratorUtil {
   def apply(
@@ -28,20 +23,25 @@ object GeneratorUtil {
     if (!firrtlDir.exists()) firrtlDir.mkdirs()
     if (!verilogDir.exists()) verilogDir.mkdirs()
 
-    new RocketChipStage().execute(Array(), Seq(
-      TargetDirAnnotation(firrtlDirName),
-      new TopModuleAnnotation(Class.forName(s"$module")),
-      new ConfigsAnnotation(configs),
-      new OutputBaseNameAnnotation(moduleName),
-      LogLevelAnnotation(LogLevel(logLevel))
-    ))
+    new RocketChipStage().execute(
+      args = Array(
+        "--target-dir", firrtlDirName,
+        "--log-level", logLevel,
+        "--top-module", module,
+        "--configs", configs.mkString(","),
+        "--name", moduleName,
+      ),
+      annotations = Seq()
+    )
 
-    new FirrtlStage().execute(Array(), Seq(
-      TargetDirAnnotation(verilogDirName),
-      FirrtlFileAnnotation(s"$firrtlDirName/$moduleName.fir"),
-      RunFirrtlTransformAnnotation(new VerilogEmitter),
-      EmitAllModulesAnnotation(classOf[VerilogEmitter]),
-      LogLevelAnnotation(LogLevel(logLevel))
-    ))
+    new FirrtlStage().execute(
+      args = Array(
+        "--target-dir", verilogDirName,
+        "--log-level", logLevel,
+        "--input-file", s"$firrtlDirName/$moduleName.fir",
+        "--emit-modules", "verilog",
+      ),
+      annotations = Seq()
+    )
   }
 }
