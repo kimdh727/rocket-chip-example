@@ -1,9 +1,7 @@
 package example.annotation
 
-// import chisel3.experimental.IO
 import chisel3._
 import chisel3.stage._
-import logger.LogLevelAnnotation
 
 class InfoModule extends Module {
   val io = IO(new Bundle{
@@ -27,8 +25,6 @@ object InfoAnnotationTester extends App {
   val chiselStageAnno = Array(
     "--module", "example.annotation.InfoModule",
     "--emit-modules", "verilog")
-
-    LogLevelAnnotation
 
   (new ChiselStage).execute(targetDirAnno ++ logLevelAnno ++ chiselStageAnno, Seq())
 }
