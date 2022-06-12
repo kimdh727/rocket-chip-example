@@ -1,4 +1,4 @@
-package example.adder
+package rce.example.adder
 
 case class UpwardParam(width: Int, paramInfo: String)
 case class DownwardParam(width: Int, paramInfo: String)

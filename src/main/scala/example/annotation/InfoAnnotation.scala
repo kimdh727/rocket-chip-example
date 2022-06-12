@@ -1,4 +1,4 @@
-package example.annotation
+package rce.example.annotation
 
 import firrtl.annotations.Target
 import firrtl.annotations.SingleTargetAnnotation

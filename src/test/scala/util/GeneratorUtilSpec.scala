@@ -1,4 +1,4 @@
-package util
+package rce.util
 
 import org.scalatest.flatspec.AnyFlatSpec
 

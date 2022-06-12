@@ -1,4 +1,4 @@
-package example.adder
+package rce.example.adder
 
 import org.scalatest.flatspec.AnyFlatSpec
 import chiseltest._

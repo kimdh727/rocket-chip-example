@@ -22,3 +22,4 @@ inThisBuild(
 )
 
 lazy val rocketchipExample = (project in file("."))
+  .settings(name := "rce")

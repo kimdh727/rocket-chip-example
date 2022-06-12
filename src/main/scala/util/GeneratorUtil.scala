@@ -1,4 +1,4 @@
-package util
+package rce.util
 
 import java.io.File
 import firrtl.stage.FirrtlStage

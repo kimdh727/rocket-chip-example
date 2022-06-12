@@ -1,4 +1,4 @@
-package example.config
+package rce.example.config
 
 import freechips.rocketchip.config._
 

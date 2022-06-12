@@ -1,4 +1,4 @@
-package example.adder
+package rce.example.adder
 
 import chisel3.util.random.FibonacciLFSR
 import freechips.rocketchip.config.Parameters

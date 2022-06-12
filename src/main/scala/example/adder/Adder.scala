@@ -1,4 +1,4 @@
-package example.adder
+package rce.example.adder
 
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy._

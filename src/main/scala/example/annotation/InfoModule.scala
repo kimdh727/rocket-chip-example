@@ -1,4 +1,4 @@
-package example.annotation
+package rce.example.annotation
 
 import chisel3._
 import chisel3.stage._

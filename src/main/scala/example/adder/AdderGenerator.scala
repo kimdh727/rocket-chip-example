@@ -1,6 +1,6 @@
-package example.adder
+package rce.example.adder
 
-import util.GeneratorUtil
+import rce.util.GeneratorUtil
 
 object AdderGenerator extends App {
   GeneratorUtil(module = "example.adder.AdderTestHarness", logLevel = "trace")

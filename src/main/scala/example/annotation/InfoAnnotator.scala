@@ -1,4 +1,4 @@
-package example.annotation
+package rce.example.annotation
 
 import chisel3.internal.InstanceId
 import chisel3.experimental.annotate

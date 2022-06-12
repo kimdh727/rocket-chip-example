@@ -1,4 +1,4 @@
-package example.config
+package rce.example.config
 
 import org.scalatest.flatspec.AnyFlatSpec
 import freechips.rocketchip.config._
