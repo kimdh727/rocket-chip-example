@@ -1,30 +1,19 @@
 package rce.example.annotation
 
 import chisel3._
-import chisel3.stage._
+import chipsalliance.rocketchip.config.Parameters
+import freechips.rocketchip.diplomacy._
 
-class InfoModule extends Module {
-  val io = IO(new Bundle{
-    val in = Input(Bool())
-    val out = Output(Bool())
-  })
+class InfoModule()(implicit p: Parameters) extends LazyModule {
+  lazy val module = new LazyModuleImp(this) {
+    val io = IO(new Bundle{
+      val in = Input(Bool())
+      val out = Output(Bool())
+    })
 
-  io.out := io.in
+    io.out := io.in
 
-  InfoAnnotator.info(this, s"Module name is ${this.name}")
-  InfoAnnotator.info(io, s"Module port ${this.io}")
-}
-
-object InfoAnnotationTester extends App {
-  val targetDir = "build/InfoModule"
-
-  val logLevel = "warn"
-
-  val targetDirAnno = Array("--target-dir", targetDir)
-  val logLevelAnno = Array("--log-level", logLevel)
-  val chiselStageAnno = Array(
-    "--module", "rce.example.annotation.InfoModule",
-    "--emit-modules", "verilog")
-
-  (new ChiselStage).execute(targetDirAnno ++ logLevelAnno ++ chiselStageAnno, Seq())
+    InfoAnnotator.info(this, s"Module name is ${this.name}")
+    InfoAnnotator.info(io, s"Module port ${this.io}")
+  }
 }

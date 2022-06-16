@@ -40,6 +40,8 @@ object GeneratorUtil {
         "--log-level", logLevel,
         "--input-file", s"$firrtlDirName/$moduleName.fir",
         "--emit-modules", "verilog",
+        "--annotation-file", s"$firrtlDirName/$moduleName.anno.json",
+        "--allow-unrecognized-annotations",
       ),
       annotations = Seq()
     )
