@@ -7,7 +7,7 @@ import freechips.rocketchip.system.RocketChipStage
 object GeneratorUtil {
   def apply(
       module: String,
-      configs: Seq[String] = Seq("example.config.EmptyConfig"),
+      configs: Seq[String] = Seq("rce.example.config.EmptyConfig"),
       logLevel: String = "warn"): Unit = {
 
     val moduleName = module.split("\\.").last

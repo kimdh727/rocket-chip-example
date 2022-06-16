@@ -23,7 +23,7 @@ object InfoAnnotationTester extends App {
   val targetDirAnno = Array("--target-dir", targetDir)
   val logLevelAnno = Array("--log-level", logLevel)
   val chiselStageAnno = Array(
-    "--module", "example.annotation.InfoModule",
+    "--module", "rce.example.annotation.InfoModule",
     "--emit-modules", "verilog")
 
   (new ChiselStage).execute(targetDirAnno ++ logLevelAnno ++ chiselStageAnno, Seq())
