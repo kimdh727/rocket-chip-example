@@ -3,11 +3,12 @@ package rce.util
 import java.io.File
 import firrtl.stage.FirrtlStage
 import freechips.rocketchip.system.RocketChipStage
+import rce.example.config.EmptyConfig
 
 object GeneratorUtil {
   def apply(
       module: String,
-      configs: Seq[String] = Seq("rce.example.config.EmptyConfig"),
+      configs: Seq[String] = Seq(classOf[EmptyConfig].getName()),
       logLevel: String = "warn"): Unit = {
 
     val moduleName = module.split("\\.").last
