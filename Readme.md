@@ -1,4 +1,4 @@
-# Rocketchip Example [![GitHub Actions SBT CI](https://github.com/kimdh727/rocket-chip-example/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kimdh727/rocket-chip-example/actions/workflows/ci.yml)
+# Rocketchip Example [![GitHub Actions SBT CI](https://github.com/kimdh727/rocket-chip-example/actions/workflows/ci.yml/badge.svg)](https://github.com/kimdh727/rocket-chip-example/actions/workflows/ci.yml)
 
 This Repository contanins [Rocketchip](https://github.com/chipsalliance/rocket-chip) examples.
 
