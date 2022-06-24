@@ -1,6 +1,6 @@
 name: GitHub Actions SBT CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   Compile-and-Test:
