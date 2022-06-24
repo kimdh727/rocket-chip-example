@@ -1,17 +1,20 @@
 package rce.util
 
 import java.io.File
+
 import firrtl.stage.FirrtlStage
 import freechips.rocketchip.system.RocketChipStage
+import freechips.rocketchip.config.Config
+
 import rce.example.config.EmptyConfig
 
 object GeneratorUtil {
-  def apply(
-      module: String,
-      configs: Seq[String] = Seq(classOf[EmptyConfig].getName()),
+  def apply[C <: Config](
+      module: Class[_],
+      configs: Seq[Class[C]] = Seq(classOf[EmptyConfig]),
       logLevel: String = "warn"): Unit = {
 
-    val moduleName = module.split("\\.").last
+    val moduleName = module.getName.split("\\.").last
 
     val dirName = s"build/$moduleName"
 
@@ -28,8 +31,8 @@ object GeneratorUtil {
       args = Array(
         "--target-dir", firrtlDirName,
         "--log-level", logLevel,
-        "--top-module", module,
-        "--configs", configs.mkString(","),
+        "--top-module", module.getName,
+        "--configs", configs.map(_.getName).mkString(","),
         "--name", moduleName,
       ),
       annotations = Seq()
