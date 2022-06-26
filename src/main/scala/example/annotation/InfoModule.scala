@@ -6,8 +6,8 @@ import freechips.rocketchip.diplomacy._
 
 class InfoModule()(implicit p: Parameters) extends LazyModule {
   lazy val module = new LazyModuleImp(this) {
-    val io = IO(new Bundle{
-      val in = Input(Bool())
+    val io = IO(new Bundle {
+      val in  = Input(Bool())
       val out = Output(Bool())
     })
 

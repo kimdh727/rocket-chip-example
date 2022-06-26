@@ -12,7 +12,8 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
   class ConfigD extends Config((site, here, up) => { case Key => "D" })
 
   "chain parameters with ++ method" should "A" in {
-    /**
+
+    /** {{{
       *      (c)
       *      / \
       *    (c)  C
@@ -20,13 +21,15 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
       *   A   B
       *
       * A -> B -> C
+      * }}}
       */
-    val p = new Config(new ConfigA ++ new ConfigB ++ new ConfigC)
+    val p = new ConfigA ++ new ConfigB ++ new ConfigC
     assert(p(Key) == "A")
   }
 
   "chain parameters with orElse method" should "A" in {
-    /**
+
+    /** {{{
       *      (c)
       *      / \
       *    (c)  C
@@ -34,13 +37,15 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
       *   A   B
       *
       * A -> B -> C
+      * }}}
       */
-    val p = new Config(new ConfigA orElse new ConfigB orElse new ConfigC)
+    val p = new ConfigA orElse new ConfigB orElse new ConfigC
     assert(p(Key) == "A")
   }
 
   "chain parameters with alter methos" should "C" in {
-    /**
+
+    /** {{{
       *    (c)
       *    / \
       *   C  (c)
@@ -48,13 +53,15 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
       *     B   A
       *
       * C -> B -> A
+      * }}}
       */
-    val p = new Config(new ConfigA alter new ConfigB alter new ConfigC)
+    val p = new ConfigA alter new ConfigB alter new ConfigC
     assert(p(Key) == "C")
   }
 
   "chain parameters" should "A" in {
-    /**
+
+    /** {{{
       *       (c)
       *       / \
       *    (c)   (c)
@@ -62,8 +69,9 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
       *   A   B C   D
       *
       * A -> B -> C -> D
+      * }}}
       */
-    val p = new Config((new ConfigA ++ new ConfigB) ++ (new ConfigC ++ new ConfigD))
+    val p = (new ConfigA ++ new ConfigB) ++ (new ConfigC ++ new ConfigD)
     assert(p(Key) == "A")
   }
 }

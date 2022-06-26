@@ -13,7 +13,7 @@ class AdderSpec extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "Adder"
 
   it should "a + b = y" in {
-    test (adder.module) { c =>
+    test(adder.module) { c =>
       for (n <- 0 until 100) {
         c.clock.step()
         c.io.error.expect(false.B)

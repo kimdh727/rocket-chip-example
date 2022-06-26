@@ -35,5 +35,4 @@ class InfoTransform extends Transform with DependencyAPIMigration {
     state.copy(annotations = annotationsx)
   }
 
-
 }

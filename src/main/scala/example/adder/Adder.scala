@@ -5,13 +5,19 @@ import freechips.rocketchip.diplomacy._
 
 /** adder DUT (nexus) */
 class Adder(implicit p: Parameters) extends LazyModule {
-  val node = new AdderNode (
+  val node = new AdderNode(
     { case dps: Seq[DownwardParam] =>
-      require(dps.forall(dp => dp.width == dps.head.width), "inward, downward adder widths must be equivalent")
+      require(
+        dps.forall(dp => dp.width == dps.head.width),
+        "inward, downward adder widths must be equivalent"
+      )
       dps.head.copy(paramInfo = "Adder")
     },
     { case ups: Seq[UpwardParam] =>
-      require(ups.forall(up => up.width == ups.head.width), "outward, upward adder widths must be equivalent")
+      require(
+        ups.forall(up => up.width == ups.head.width),
+        "outward, upward adder widths must be equivalent"
+      )
       ups.head.copy(paramInfo = "Adder")
     }
   )

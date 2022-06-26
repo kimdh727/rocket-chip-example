@@ -24,8 +24,6 @@ class AdderMonitorNode(width: UpwardParam)(implicit valName: ValName)
   extends SinkNode(AdderNodeImp)(Seq(width))
 
 /** node for [[Adder]] (nexus) */
-class AdderNode(
-    dFn: Seq[DownwardParam] => DownwardParam,
-    uFn: Seq[UpwardParam] => UpwardParam)(
-    implicit valName: ValName)
-  extends NexusNode(AdderNodeImp)(dFn, uFn)
+class AdderNode(dFn: Seq[DownwardParam] => DownwardParam, uFn: Seq[UpwardParam] => UpwardParam)(
+    implicit valName: ValName
+) extends NexusNode(AdderNodeImp)(dFn, uFn)
