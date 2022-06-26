@@ -8,10 +8,10 @@ inThisBuild(
       "-Xfatal-warnings",
       "-Xlint",
     ),
-    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.2.0" % "test"),
     addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % "3.5.0" cross CrossVersion.full),
-    libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.0" % "test",
     libraryDependencies += "edu.berkeley.cs" %% "rocketchip" % "1.5-SNAPSHOT",
+    libraryDependencies += "org.scalatest"   %% "scalatest"  % "3.2.0" % "test",
+    libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.0" % "test",
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     resolvers ++= Seq(
