@@ -94,7 +94,7 @@ object GraphMLUtil extends HasRocketChipStageUtils {
       }
 
     writeOutputFile(
-      targetDir = dir(s"build/$moduleName/firrtl"),
+      targetDir = dir(s"build/$moduleName/graph"),
       fname = s"$moduleName.graphml",
       contents = getGraphML(moduleInstance))
   }
