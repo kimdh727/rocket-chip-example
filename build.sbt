@@ -14,7 +14,6 @@ inThisBuild(
     libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.0" % "test",
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    parallelExecution := false,
     resolvers ++= Seq(
       Resolver.sonatypeRepo("snapshots"),
       Resolver.sonatypeRepo("releases"),
