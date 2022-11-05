@@ -2,9 +2,9 @@ name: GitHub Actions SBT CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   Compile-and-Test:
@@ -26,8 +26,10 @@ jobs:
             ~/.ivy2/cache
             ~/.sbt
           key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
-      - name: SBT ScalafixAll
+      - name: SBT Scalafix
         run: sbt "scalafixAll --check"
+      - name: SBT Scalafmt
+        run: sbt scalafmtCheckAll
       - name: SBT Compile
         run: sbt compile
       - name: SBT Test

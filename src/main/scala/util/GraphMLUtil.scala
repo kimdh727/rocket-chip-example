@@ -25,11 +25,12 @@ object GraphMLUtil extends HasRocketChipStageUtils {
 
     def getNodesGraphML(module: LazyModule, buf: StringBuilder, pad: String): Unit = {
       buf ++= s"""$pad<node id=\"${index(module)}\">\n"""
-      buf ++= s"""$pad  <data key=\"n\"><y:ShapeNode><y:NodeLabel modelName=\"sides\" modelPosition=\"w\" rotationAngle=\"270.0\">${module.name}</y:NodeLabel><y:BorderStyle type=\"${if (module.shouldBeInlined) "dotted" else "line"}\"/></y:ShapeNode></data>\n"""
+      buf ++= s"""$pad  <data key=\"n\"><y:ShapeNode><y:NodeLabel modelName=\"sides\" modelPosition=\"w\" rotationAngle=\"270.0\">${module.name}</y:NodeLabel><y:BorderStyle type=\"${if (module.shouldBeInlined) "dotted"
+        else "line"}\"/></y:ShapeNode></data>\n"""
       buf ++= s"""$pad  <data key=\"d\">${module.name} (${module.name})</data>\n"""
       buf ++= s"""$pad  <graph id=\"${index(module)}::\" edgedefault=\"directed\">\n"""
       module.getNodes.filter(!_.omitGraphML).foreach { n =>
-        buf ++= s"""$pad    <node id=\"${index{module}}::${n.index}\">\n"""
+        buf ++= s"""$pad    <node id=\"${index(module)}::${n.index}\">\n"""
         buf ++= s"""$pad      <data key=\"n\"><y:ShapeNode><y:Shape type="ellipse"/><y:Fill color="#FFCC00" transparent=\"${n.circuitIdentity}\"/></y:ShapeNode></data>\n"""
         buf ++= s"""$pad      <data key=\"d\">${n.formatNode}, \n${n.nodedebugstring}</data>\n"""
         buf ++= s"""$pad    </node>\n"""
@@ -81,21 +82,22 @@ object GraphMLUtil extends HasRocketChipStageUtils {
   }
 
   def apply[C <: Config](
-    module: Class[_],
-    configs: Seq[Class[C]] = Seq(classOf[rce.example.config.EmptyConfig]),
+      module: Class[_],
+      configs: Seq[Class[C]] = Seq(classOf[rce.example.config.EmptyConfig])
   ): Unit = {
 
     val moduleName = module.getName.split("\\.").last
     val moduleInstance: LazyModule = module
       .getConstructor(classOf[Parameters])
       .newInstance(getConfig(configs.map(_.getName))) match {
-        case a: LazyModule => a
-        case _ => throw new Exception("Support LazyModule only")
-      }
+      case a: LazyModule => a
+      case _             => throw new Exception("Support LazyModule only")
+    }
 
     writeOutputFile(
       targetDir = dir(s"build/$moduleName/graph"),
       fname = s"$moduleName.graphml",
-      contents = getGraphML(moduleInstance))
+      contents = getGraphML(moduleInstance)
+    )
   }
 }
