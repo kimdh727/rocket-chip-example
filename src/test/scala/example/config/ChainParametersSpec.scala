@@ -23,12 +23,13 @@ class ChainParametersSpec extends AnyFlatSpec {
       case Key2 => 200
     })
 
-  /** |         | Key0 | Key1 | Key2 |
-    * |:--------|:-----|:-----|:-----|
-    * | Config0 | 0    | 1    | 2    |
-    * | Config1 |      | 10   | 20   |
-    * | Config2 |      |      | 200  |
-    */
+  /*
+   * |         | Key0 | Key1 | Key2 |
+   * |:--------|:-----|:-----|:-----|
+   * | Config0 | 0    | 1    | 2    |
+   * | Config1 |      | 10   | 20   |
+   * | Config2 |      |      | 200  |
+   */
   val config = new Config2 ++
     new Config1 ++
     new Config0

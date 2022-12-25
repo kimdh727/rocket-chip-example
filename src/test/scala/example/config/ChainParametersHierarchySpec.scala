@@ -13,64 +13,68 @@ class ChainParametersHierarchySpec extends AnyFlatSpec {
 
   "chain parameters with ++ method" should "A" in {
 
-    /** {{{
-      *      (c)
-      *      / \
-      *    (c)  C
-      *    / \
-      *   A   B
-      *
-      * A -> B -> C
-      * }}}
-      */
+    /*
+     * {{{
+     *      (c)
+     *      / \
+     *    (c)  C
+     *    / \
+     *   A   B
+     *
+     * A -> B -> C
+     * }}}
+     */
     val p = new ConfigA ++ new ConfigB ++ new ConfigC
     assert(p(Key) == "A")
   }
 
   "chain parameters with orElse method" should "A" in {
 
-    /** {{{
-      *      (c)
-      *      / \
-      *    (c)  C
-      *    / \
-      *   A   B
-      *
-      * A -> B -> C
-      * }}}
-      */
+    /*
+     * {{{
+     *      (c)
+     *      / \
+     *    (c)  C
+     *    / \
+     *   A   B
+     *
+     * A -> B -> C
+     * }}}
+     */
     val p = new ConfigA orElse new ConfigB orElse new ConfigC
     assert(p(Key) == "A")
   }
 
   "chain parameters with alter methos" should "C" in {
 
-    /** {{{
-      *    (c)
-      *    / \
-      *   C  (c)
-      *      / \
-      *     B   A
-      *
-      * C -> B -> A
-      * }}}
-      */
+    /*
+     * {{{
+     *    (c)
+     *    / \
+     *   C  (c)
+     *      / \
+     *     B   A
+     *
+     * C -> B -> A
+     * }}}
+     */
     val p = new ConfigA alter new ConfigB alter new ConfigC
     assert(p(Key) == "C")
   }
 
   "chain parameters" should "A" in {
 
-    /** {{{
-      *       (c)
-      *       / \
-      *    (c)   (c)
-      *    / \   / \
-      *   A   B C   D
-      *
-      * A -> B -> C -> D
-      * }}}
-      */
+    /*
+     * {{{
+     *       (c)
+     *       / \
+     *    (c)   (c)
+     *    / \   / \
+     *   A   B C   D
+     *
+     * A -> B -> C -> D
+     * }}}
+     */
     val p = (new ConfigA ++ new ConfigB) ++ (new ConfigC ++ new ConfigD)
     assert(p(Key) == "A")
   }
