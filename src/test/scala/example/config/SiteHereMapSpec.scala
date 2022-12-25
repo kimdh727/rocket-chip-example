@@ -26,13 +26,14 @@ class SiteHereMapSpec extends AnyFlatSpec {
         case Key0 => 3
       })
 
-    /** |         | Key0 | Key1       | Key2       | Key3     |
-      * |:--------|:-----|:-----------|:-----------|:---------|
-      * | default |      | 1          | 2          | 3        |
-      * | ConfigA | 1    |            |            |          |
-      * | ConfigB | 2    | site(Key0) | here(Key0) | up(Key0) |
-      * | ConfigC | 3    |            |            |          |
-      */
+    /*
+     * |         | Key0 | Key1       | Key2       | Key3     |
+     * |:--------|:-----|:-----------|:-----------|:---------|
+     * | default |      | 1          | 2          | 3        |
+     * | ConfigA | 1    |            |            |          |
+     * | ConfigB | 2    | site(Key0) | here(Key0) | up(Key0) |
+     * | ConfigC | 3    |            |            |          |
+     */
     val config = new ConfigC ++
       new ConfigB ++
       new ConfigA
@@ -45,10 +46,11 @@ class SiteHereMapSpec extends AnyFlatSpec {
 
   it should "Stack Overflow Error" in {
 
-    /** |        | Key0       | Key1       | Key2       | Key3       |
-      * |:-------|:-----------|:-----------|:-----------|:-----------|
-      * | Config | site(Key0) | here(Key1) | here(Key3) | here(Key2) |
-      */
+    /*
+     * |        | Key0       | Key1       | Key2       | Key3       |
+     * |:-------|:-----------|:-----------|:-----------|:-----------|
+     * | Config | site(Key0) | here(Key1) | here(Key3) | here(Key2) |
+     */
     val config = new Config((site, here, up) => {
       case Key0 => site(Key0)
       case Key1 => here(Key1)
@@ -64,11 +66,12 @@ class SiteHereMapSpec extends AnyFlatSpec {
 
   it should "default value" in {
 
-    /** |         | Key0     | Key1     | Key2     | Key3     |
-      * |:--------|:---------|:---------|:---------|:---------|
-      * | default |          | 1        | 2        | 3        |
-      * | Config  | up(Key0) | up(Key1) | up(Key3) | up(Key2) |
-      */
+    /*
+     * |         | Key0     | Key1     | Key2     | Key3     |
+     * |:--------|:---------|:---------|:---------|:---------|
+     * | default |          | 1        | 2        | 3        |
+     * | Config  | up(Key0) | up(Key1) | up(Key3) | up(Key2) |
+     */
     val config = new Config((site, here, up) => {
       case Key0 => up(Key0)
       case Key1 => up(Key1)
