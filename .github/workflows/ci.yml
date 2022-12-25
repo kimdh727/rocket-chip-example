@@ -34,3 +34,5 @@ jobs:
         run: sbt compile
       - name: SBT Test
         run: sbt test
+      - name: SBT Docs
+        run: sbt doc; sbt "Test / doc";
