@@ -16,7 +16,7 @@ class AdderSpec extends AnyFlatSpec with ChiselScalatestTester {
     test(adder.module).withAnnotations(Seq(WriteVcdAnnotation)) { c =>
       for (n <- 0 until 100) {
         c.clock.step()
-        c.io.error.expect(false.B)
+        c.io.error.expect(true.B)
       }
     }
   }
