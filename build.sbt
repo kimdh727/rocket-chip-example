@@ -11,9 +11,10 @@ inThisBuild(
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % "3.5.0" cross CrossVersion.full),
-    libraryDependencies += "edu.berkeley.cs" %% "rocketchip" % "1.5-SNAPSHOT",
-    libraryDependencies += "org.scalatest"   %% "scalatest"  % "3.2.0" % "test",
-    libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.0" % "test",
+    libraryDependencies += "edu.berkeley.cs"   %% "rocketchip"      % "1.5-SNAPSHOT",
+    libraryDependencies += "org.scalatest"     %% "scalatest"       % "3.2.0"    % "test",
+    libraryDependencies += "org.scalatestplus" %% "scalacheck-1-17" % "3.2.14.0" % "test",
+    libraryDependencies += "edu.berkeley.cs"   %% "chiseltest"      % "0.5.0"    % "test",
     resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
     resolvers ++= Resolver.sonatypeOssRepos("snapshreleasesots"),
   )
